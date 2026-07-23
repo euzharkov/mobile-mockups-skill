@@ -74,14 +74,6 @@ Live examples, straight from this repo:
   of mail data replaced by fictional equivalents.
   [Read more](https://github.com/euzharkov/blog/tree/main/mobile-mockups-skill-examples/gmail).
 
-And a still of what the agent maintains for you — the foundations page and
-its contrast audit, rendered live from `design-system.css`:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/euzharkov/blog/main/mobile-mockups-skill-examples/foundations.png" alt="Foundations page: palette with light and dark values, and the type ramp" />
-  <img src="https://raw.githubusercontent.com/euzharkov/blog/main/mobile-mockups-skill-examples/contrast-audit.png" alt="Live WCAG 2.1 contrast audit with ratios and verdicts for both themes" width="70%" />
-</p>
-
 Or run the examples locally — they live in the
 [blog repo](https://github.com/euzharkov/blog) and the folder is
 self-contained: clone it and start any static server inside
