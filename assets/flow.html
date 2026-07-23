@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flow</title>
+    <!-- Keep the head identical to index.html (fonts, icons, both stylesheets)
+         so every page shares one design system. -->
+    <link rel="stylesheet" href="design-system.css" />
+    <link rel="stylesheet" href="mockup.css" />
+    <!-- Swap for the icon library chosen during discovery (see DESIGN-SYSTEM.md). -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <style>
+      /* Layer 2: screen CSS for this page only. Compose freely, but take
+         every color, size, radius, and space from design-system values. */
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script src="mockup.js"></script>
+    <script>
+      renderMockupPage({
+        title: "PRODUCT — FLOW AREA",
+        intro: "What this page covers and how it relates to the other pages. Link siblings: <a href='index.html'>index</a>.",
+        /* Flow pages usually skip the foundations section — it lives on index.html. */
+        foundations: false,
+        sections: [
+          {
+            id: "first-section",
+            title: "First section",
+            desc: "What this moment in the product is for.",
+            cols: [
+              {
+                label: "<b>State.</b> What this phone shows and why.",
+                html: phone(`<h2 class="t-title">First screen</h2>`),
+              },
+            ],
+            notes: [],
+          },
+        ],
+        pageNotes: [],
+      });
+    </script>
+  </body>
+</html>

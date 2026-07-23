@@ -1,0 +1,580 @@
+/*
+ * mockup.css — the workbench, not the product.
+ *
+ * Everything here is preview-only material: the gallery canvas, phone shell,
+ * toolbar, section chrome, annotations, and the foundations page. Raw colors
+ * are allowed in this file precisely because none of it is product design.
+ * Product screens must take their values from design-system.css instead.
+ *
+ * You should rarely need to edit this file. Screens live in the HTML pages;
+ * design values live in design-system.css.
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  --canvas-pad: 40px;
+  background: #ece9e3;
+  background-image: radial-gradient(1100px 500px at 18% -8%, #f7f5f0 0%, transparent 60%);
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #26272b;
+  padding: 48px var(--canvas-pad) 90px;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---- page header ---- */
+.page-head {
+  max-width: 1240px;
+  margin: 0 auto 8px;
+}
+.page-head h1 {
+  font-size: 29px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+.page-head > p {
+  font-size: 15px;
+  color: #62646c;
+  margin-top: 10px;
+  max-width: 720px;
+  line-height: 1.55;
+}
+.page-head .section-index {
+  display: flex;
+  gap: 8px 18px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  font-size: 13px;
+}
+.page-head .section-index a {
+  color: #46484f;
+  text-decoration: none;
+  border-bottom: 1px solid #c9c7c0;
+  padding-bottom: 1px;
+}
+.page-head .section-index a:hover {
+  color: #1c1d21;
+  border-color: #8f8d86;
+}
+
+/* ---- toolbar: theme, zoom, solo state ---- */
+.toolbar {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 300;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid #dcdad3;
+  border-radius: 999px;
+  padding: 6px 8px;
+  box-shadow: 0 6px 18px -8px rgba(30, 28, 22, 0.35);
+  font-size: 12.5px;
+}
+.toolbar .tb-btn {
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #55575e;
+  user-select: none;
+  white-space: nowrap;
+}
+.toolbar .tb-btn:hover {
+  background: #f0eee9;
+}
+.toolbar .tb-btn.on {
+  background: #26272b;
+  color: #f6f5f2;
+}
+.toolbar .tb-sep {
+  width: 1px;
+  height: 18px;
+  background: #dcdad3;
+}
+
+/* ---- solo mode banner ---- */
+.solo-banner {
+  max-width: 1240px;
+  margin: 0 auto 6px;
+  font-size: 13px;
+  color: #6b5d2e;
+  background: #f5eecd;
+  border: 1px solid #e3d9ad;
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+.solo-banner a {
+  color: #4d431f;
+  font-weight: 600;
+}
+
+/* ---- sections ----
+   Text stays in the reading column (.sec-inner); the rail breaks out to the
+   full window width so the scroll area is as wide as the screen. */
+.sec {
+  margin: 46px 0 0;
+}
+.sec .sec-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.sec .sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+/* Scoped to .sec-head so page h2s inside screens keep their role styles. */
+.sec-head h2 {
+  font-size: 21px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.sec .solo-link {
+  font-size: 11.5px;
+  color: #8a8c93;
+  text-decoration: none;
+  border: 1px solid #d7d5ce;
+  border-radius: 999px;
+  padding: 2px 9px;
+  cursor: pointer;
+}
+.sec .solo-link:hover {
+  color: #3d3f45;
+  border-color: #aeaca5;
+}
+.sec-inner > p {
+  font-size: 14px;
+  color: #62646c;
+  margin-top: 6px;
+  max-width: 720px;
+  line-height: 1.55;
+}
+
+/* Horizontal rail of phone columns; snaps loosely so partial phones peek. */
+/* Full-bleed: cancel the body padding so the scroll area spans the whole
+   window; inner padding re-aligns the first phone with the reading column. */
+.rail {
+  display: flex;
+  gap: 34px;
+  overflow-x: auto;
+  margin: 0 calc(-1 * var(--canvas-pad));
+  padding: 10px calc(var(--canvas-pad) + 4px) 20px;
+  scroll-snap-type: x proximity;
+  /* Snap must target the column start, not the bleed edge, or the initial
+     position scrolls the inline padding away. */
+  scroll-padding-inline: calc(var(--canvas-pad) + 4px);
+}
+.rail::-webkit-scrollbar {
+  height: 10px;
+}
+.rail::-webkit-scrollbar-thumb {
+  background: #cbc8c0;
+  border-radius: 8px;
+}
+
+.col {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  zoom: var(--phone-zoom, 0.85);
+}
+.col-label {
+  font-size: 14px;
+  color: #62646c;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  max-width: 390px;
+  text-align: center;
+  line-height: 1.45;
+}
+.col-label b {
+  color: #26272b;
+  font-weight: 650;
+}
+
+/* Fixed-height slot above every phone; holds the variant tag when present so
+   tagged and untagged screens stay top-aligned across the rail. */
+.tag-slot {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Variant tag above a phone (pricing tier, experiment arm, platform…). */
+.tag {
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  background: #e2e0d9;
+  color: #55575e;
+}
+.tag.accent {
+  background: #dfe3f8;
+  color: #37418f;
+}
+
+/* ---- phone shell: 390×844 baseline, authored 1:1 with production points ---- */
+.phone {
+  width: 390px;
+  height: 844px;
+  border-radius: 54px;
+  background: #000;
+  padding: 10px;
+  box-shadow:
+    0 30px 60px -20px rgba(40, 38, 32, 0.5),
+    0 0 0 2px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+.screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 44px;
+  overflow: hidden;
+  position: relative;
+  background: var(--canvas);
+  /* Re-anchor text color inside the screen so the dark palette resolves
+     here even though the gallery body stays light. */
+  color: var(--ink-900);
+  display: flex;
+  flex-direction: column;
+}
+.notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 122px;
+  height: 34px;
+  background: #000;
+  border-radius: 999px;
+  z-index: 40;
+}
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 30px 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-900);
+  z-index: 20;
+  flex: 0 0 auto;
+}
+.statusbar .sb-right {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.statusbar .sb-right i {
+  font-size: 17px;
+  line-height: 1;
+}
+.statusbar .sb-right svg,
+.navback svg {
+  display: block;
+}
+
+/* Screen body: the scrollable content region between chrome. */
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px var(--screen-inset) 0;
+  overflow: hidden;
+  position: relative;
+}
+.body.scrolly {
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+.body.scrolly::-webkit-scrollbar {
+  width: 0;
+}
+.footer {
+  padding: 14px var(--screen-inset) 18px;
+  flex: 0 0 auto;
+}
+
+/* Back affordance for pushed screens. */
+.navback {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--functional);
+  border: 1px solid var(--border-subtle);
+  color: var(--ink-900);
+  font-size: 18px;
+  margin-bottom: var(--space-3);
+  flex: 0 0 auto;
+}
+
+/* Generic tab bar: opaque floating pill. Opaque on purpose — translucency
+   ghosts scrolled content through the bar and hurts label contrast. */
+.tabbar {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  background: var(--card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 9px 6px;
+  box-shadow: 0 12px 26px -14px rgba(20, 18, 14, 0.4);
+  z-index: 30;
+}
+.tabbar .ti {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: var(--weight-medium);
+  color: var(--ink-400);
+  min-width: 56px;
+  cursor: default;
+}
+.tabbar .ti i {
+  font-size: 22px;
+}
+.tabbar .ti svg {
+  width: 22px;
+  height: 22px;
+}
+.tabbar .ti.on {
+  color: var(--accent-interactive);
+  font-weight: var(--weight-semibold);
+}
+/* Leave room for the floating bar when a screen shows one. */
+.body.floatpad {
+  padding-bottom: 86px;
+}
+.footer.floatpad {
+  padding-bottom: 88px;
+}
+
+/* ---- rationale notes ----
+   Notes carry design decisions IN the mockup, so the reasoning survives the
+   chat session that produced it. */
+.note {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+.note.insec {
+  margin-top: 6px;
+  padding-bottom: 8px;
+}
+.note .n {
+  background: #f6f4ef;
+  border: 1px solid #e0ded7;
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #55575e;
+}
+.note .n b {
+  color: #26272b;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 12.5px;
+}
+#pagenote {
+  margin-top: 44px;
+}
+#pagenote .pn-title {
+  max-width: 1240px;
+  margin: 0 auto 10px;
+  font-size: 14px;
+  font-weight: 650;
+  color: #46484f;
+}
+
+/* ---- foundations section (auto-rendered by mockup.js) ---- */
+.fd-block {
+  margin-top: 20px;
+}
+.fd-block h3 {
+  font-size: 14px;
+  font-weight: 650;
+  color: #46484f;
+  margin-bottom: 10px;
+}
+.fd-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.fd-swatch {
+  width: 148px;
+  border: 1px solid #ddDBd4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.fd-swatch .fd-chip {
+  height: 52px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.fd-swatch .meta {
+  padding: 7px 10px 8px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #55575e;
+}
+.fd-swatch .meta b {
+  display: block;
+  color: #26272b;
+  font-size: 11.5px;
+  font-weight: 650;
+  word-break: break-all;
+}
+.fd-pair-note {
+  font-size: 12px;
+  color: #8a8c93;
+  margin-top: 8px;
+}
+
+.fd-type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #ddDBd4;
+}
+.fd-type-row .spec {
+  flex: 0 0 240px;
+  font-size: 11.5px;
+  color: #8a8c93;
+  font-family: ui-monospace, Menlo, monospace;
+}
+.fd-type-row .spec b {
+  color: #46484f;
+  display: block;
+  font-size: 12px;
+}
+.fd-type-sample {
+  background: var(--canvas);
+  border: 1px solid #e0ded7;
+  border-radius: 10px;
+  padding: 10px 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fd-space-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+.fd-space-row .lbl {
+  flex: 0 0 120px;
+  font-size: 11.5px;
+  font-family: ui-monospace, Menlo, monospace;
+  color: #55575e;
+}
+.fd-space-row .bar {
+  height: 14px;
+  background: #b9c1ef;
+  border: 1px solid #98a3e6;
+  border-radius: 3px;
+}
+
+.fd-radius-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.fd-radius-chip {
+  width: 110px;
+  height: 68px;
+  background: #fff;
+  border: 1px solid #c6c4bc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-family: ui-monospace, Menlo, monospace;
+  color: #55575e;
+  text-align: center;
+  padding: 6px;
+}
+
+/* Contrast audit table */
+.fd-audit {
+  border-collapse: collapse;
+  font-size: 12.5px;
+  min-width: 640px;
+}
+.fd-audit th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a8c93;
+  padding: 6px 14px 6px 0;
+  border-bottom: 1px solid #d7d5ce;
+}
+.fd-audit td {
+  padding: 7px 14px 7px 0;
+  border-bottom: 1px solid #e7e5de;
+  color: #46484f;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 12px;
+}
+.fd-audit .pair-demo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-family: var(--font-body, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+.fd-audit .ok {
+  color: #2e6b34;
+  font-weight: 700;
+}
+.fd-audit .large-only {
+  color: #8a6414;
+  font-weight: 700;
+}
+.fd-audit .fail {
+  color: #a8332a;
+  font-weight: 700;
+}
+.fd-scroll {
+  overflow-x: auto;
+}

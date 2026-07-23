@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mockups</title>
+    <!-- Webfonts: add a <link> here when the design system chooses one, and
+         point --font-display / --font-body at it in design-system.css.
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=…&display=swap" rel="stylesheet" />
+    -->
+    <link rel="stylesheet" href="design-system.css" />
+    <link rel="stylesheet" href="mockup.css" />
+    <!-- Icon library: the PROJECT'S choice, asked during discovery — never
+         assumed. The starter example happens to use Phosphor; swap this tag
+         (and the page-local icon() shorthand below) for whatever the user
+         picks, or delete it and use emoji/inline SVG. -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <style>
+      /* =====================================================================
+         Layer 2: screen CSS for THIS page. Composition and positioning live
+         here; every color, size, radius, and space comes from design-system
+         values. Classes below are presentation hooks for these mockups, not
+         a component API — production is free to structure things its own way.
+         ===================================================================== */
+
+      .stack > * + * {
+        margin-top: var(--space-3);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-card);
+        padding: var(--space-4);
+      }
+      .card.flat {
+        background: var(--functional);
+      }
+
+      .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        background: var(--btn-fill);
+        border-radius: var(--radius-control);
+        padding: var(--space-4);
+        width: 100%;
+      }
+      .btn.quiet {
+        background: var(--functional);
+        border: 1px solid var(--border-control);
+      }
+      .btn.quiet span {
+        color: var(--ink-900);
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        border: 1px solid var(--border-control);
+        border-radius: var(--radius-pill);
+        padding: var(--space-2) var(--space-3);
+        background: var(--functional);
+      }
+      .chip.sel {
+        background: var(--selected);
+        border-color: var(--ink-600);
+      }
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+
+      .entry {
+        display: flex;
+        gap: var(--space-3);
+        align-items: flex-start;
+      }
+      .entry .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: var(--radius-pill);
+        background: var(--accent-decorative);
+        margin-top: 7px;
+        flex: 0 0 auto;
+      }
+      .entry + .entry {
+        border-top: 1px solid var(--border-subtle);
+        padding-top: var(--space-3);
+        margin-top: var(--space-3);
+      }
+
+      .empty-art {
+        height: 180px;
+        border-radius: var(--radius-card);
+        background: var(--accent-tint);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-interactive);
+        font-size: 56px;
+      }
+
+      .field {
+        background: var(--functional);
+        border: 1px solid var(--border-control);
+        border-radius: var(--radius-control);
+        padding: var(--space-4);
+        min-height: 140px;
+      }
+      .field .placeholder {
+        color: var(--ink-400);
+      }
+
+      .spaced {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script src="mockup.js"></script>
+    <script>
+      /* ===================================================================
+         The example below mocks "Fieldnote", a tiny journaling app, purely
+         to demonstrate the method. Replace the sections with your product's
+         flows and delete the example. Keep the foundations section and the
+         contrast pairs in sync with your design system.
+         =================================================================== */
+
+      /* Page-local icon shorthand for the library this project chose.
+         tabbar() accepts rendered HTML, so any library (or emoji) works. */
+      const icon = (name, fill = false) => `<i class="ph${fill ? "-fill" : ""} ph-${name}"></i>`;
+
+      const TABS = [
+        { key: "today", icon: icon("sun"), iconActive: icon("sun", true), label: "Today" },
+        { key: "log", icon: icon("notebook"), iconActive: icon("notebook", true), label: "Log" },
+        { key: "you", icon: icon("user-circle"), iconActive: icon("user-circle", true), label: "You" },
+      ];
+
+      const homeScreen = phone(
+        `<div class="stack">
+          <div class="spaced">
+            <h2 class="t-title">Tuesday</h2>
+            <span class="t-caption">July 23</span>
+          </div>
+          <div class="card">
+            <div class="t-subheading">Today's note</div>
+            <p class="t-body" style="margin-top: var(--space-2)">
+              Long walk before work. The park smelled like rain and the
+              espresso place finally had oat milk again.
+            </p>
+            <div class="chip-row" style="margin-top: var(--space-3)">
+              <span class="chip t-caption">Walked</span>
+              <span class="chip sel t-caption">Slept well</span>
+            </div>
+          </div>
+          <div class="spaced" style="margin-top: var(--space-2)">
+            <span class="t-subheading">Earlier this week</span>
+            <span class="t-link" style="font-size: 15px">All entries</span>
+          </div>
+          <div class="card flat">
+            <div class="entry">
+              <span class="dot"></span>
+              <div>
+                <div class="t-callout">Monday</div>
+                <p class="t-body" style="font-size: 15px; line-height: 22px">
+                  Deadline day. Kept it together with two short breaks.
+                </p>
+              </div>
+            </div>
+            <div class="entry">
+              <span class="dot"></span>
+              <div>
+                <div class="t-callout">Sunday</div>
+                <p class="t-body" style="font-size: 15px; line-height: 22px">
+                  Slow morning, pancakes, called Dad.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>`,
+        { tab: tabbar(TABS, "today") },
+      );
+
+      const emptyScreen = phone(
+        `<div class="stack" style="margin-top: var(--space-8)">
+          <div class="empty-art"><i class="ph ph-notebook"></i></div>
+          <h2 class="t-title">Your first note</h2>
+          <p class="t-body">
+            One honest sentence about today is enough. Streaks and stats can
+            wait — this is a place to notice, not to perform.
+          </p>
+        </div>`,
+        {
+          tab: tabbar(TABS, "today"),
+          footer: `<div class="btn"><span class="t-on-accent">Write today's note</span></div>`,
+        },
+      );
+
+      const newEntryScreen = phone(
+        `<div class="stack">
+          <h2 class="t-title">Tuesday's note</h2>
+          <div class="field">
+            <span class="t-body placeholder">What stood out today?</span>
+          </div>
+          <div class="t-caption">Tags</div>
+          <div class="chip-row">
+            <span class="chip sel t-caption">Walked</span>
+            <span class="chip t-caption">Cooked</span>
+            <span class="chip t-caption">Read</span>
+            <span class="chip t-caption">Rough day</span>
+          </div>
+        </div>`,
+        {
+          back: true,
+          footer: `<div class="btn"><span class="t-on-accent">Save note</span></div>
+                   <div class="btn quiet" style="margin-top: var(--space-2)"><span class="t-body">Save without tags</span></div>`,
+        },
+      );
+
+      renderMockupPage({
+        title: "Fieldnote — example mockup",
+        intro:
+          "A starter canvas for the HTML mockup method. The Foundations section below renders live from design-system.css; the example flow shows how screens are declared. Replace the example with your product and keep foundations honest.",
+        contrastPairs: [
+          ["--ink-900", "--canvas"],
+          ["--ink-900", "--card"],
+          ["--ink-900", "--selected"],
+          ["--ink-600", "--canvas"],
+          ["--ink-600", "--card"],
+          ["--ink-400", "--canvas"],
+          ["--ink-400", "--card"],
+          ["--accent-interactive", "--canvas"],
+          ["--accent-interactive", "--card"],
+          ["--accent-interactive", "--accent-tint"],
+          ["--danger", "--canvas"],
+          ["--danger", "--card"],
+          ["--btn-label", "--btn-fill"],
+        ],
+        sections: [
+          {
+            id: "core-flow",
+            title: "Core flow — example, delete me",
+            desc: "The daily loop: read today, notice the week, add a note. Every screen shows real copy — the mockup doubles as the copy spec.",
+            cols: [
+              {
+                label: "<b>Home.</b> Today first, history second — the week list stays quiet below the fold.",
+                html: homeScreen,
+              },
+              {
+                label: "<b>First run.</b> One action, no feature tour. Empty states carry the product's voice.",
+                tag: "Empty state",
+                html: emptyScreen,
+              },
+              {
+                label: "<b>New entry.</b> Free text leads; tags are optional and never block saving.",
+                html: newEntryScreen,
+              },
+            ],
+            notes: [
+              note(
+                "Why tags don't gate saving",
+                "The primary promise is a one-sentence note. A required taxonomy would turn reflection into data entry, so tags stay a bonus.",
+              ),
+              note(
+                "Footer CTA pattern",
+                "Screens with one obvious next step pin it in the footer; the scroll region never hides the main action.",
+              ),
+            ],
+          },
+        ],
+        pageNotes: [
+          note(
+            "How to read this page",
+            "Each section is a flow; each phone is a state, labeled underneath. Rationale sits in notes like this one so decisions survive the session that made them.",
+          ),
+        ],
+      });
+    </script>
+  </body>
+</html>

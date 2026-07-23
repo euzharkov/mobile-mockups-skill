@@ -1,0 +1,214 @@
+/*
+ * design-system.css — Layer 1 of the mockup method: the flat design-value registry.
+ *
+ * This file is the single source of truth for the product's design values:
+ * semantic colors, type roles, spacing, radii, and screen insets. Screens
+ * (Layer 2) consume these values and add their own composition CSS.
+ *
+ * It is deliberately a flat value registry, NOT a component-token layer.
+ * There is no --button-primary-bg here. Screens compose values directly, so
+ * the mockup never grows a private component API that production would then
+ * be pressured to mirror.
+ *
+ * The starter palette below is a neutral placeholder (warm paper + graphite
+ * ink + one restrained indigo accent). Replace every color when you design
+ * a real product's system — the structure is the part you keep.
+ *
+ * Conventions the foundations page relies on (keep them when renaming):
+ *   - colors:   any custom property whose value is a color shows as a swatch
+ *   - fonts:    --font-*  (families), --weight-* (the only loaded weights)
+ *   - spacing:  --space-*
+ *   - shape:    --radius-*
+ *   - type:     .t-<role> classes render in the type ramp
+ */
+
+:root {
+  /* ---- Light semantic palette ----
+     Roles, not appearances. "canvas" is the app background, "card" a raised
+     surface, "functional" a quieter surface for controls/forms, "selected"
+     a pressed/chosen state fill, "accent-tint" a soft wash for highlighted
+     containers. Canvas and card must remain visibly distinct. */
+  --canvas: #f4f2ee;
+  --card: #ffffff;
+  --functional: #faf9f6;
+  --selected: #e9e7e0;
+  --accent-tint: #eef0fa;
+
+  /* Ink scale: primary text, secondary text, tertiary/metadata.
+     Every step must pass its contrast target on canvas AND card. */
+  --ink-900: #1f2126;
+  --ink-600: #4b4e57;
+  --ink-400: #646873;
+
+  /* The accent splits into two ROLES, not two shades:
+     interactive (links, active states — must pass 4.5:1 on canvas) and
+     decorative (fills, illustrations — may be lighter, never carries text).
+     In dark mode the hexes SWAP roles so interactive stays the readable one. */
+  --accent-interactive: #4653c8;
+  --accent-decorative: #7c88e8;
+
+  /* Serious, not alarming. Errors in most products are recoverable;
+     a full fire-engine red makes users feel at fault. */
+  --danger: #a8433a;
+
+  --border-subtle: #e4e2db;
+  --border-control: #c6c4bc;
+
+  /* Primary action: graphite fill with warm-white label (see .t-on-accent). */
+  --btn-fill: #1f2126;
+  --btn-label: #f8f8f6;
+
+  /* ---- Type families ----
+     One display family, one UI/body family, at most. The starter uses the
+     system stack for both; swap --font-display for a webfont if the product
+     needs editorial character (load it from the page <head>). */
+  --font-display: -apple-system, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  --font-body: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+
+  /* The only weights the mockup may use. Loading (or synthesizing) extra
+     weights is how type systems quietly rot. */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* ---- Spacing: 4px scale ----
+     Half steps exist for compact optical alignment; they should not become
+     the default rhythm. Negative margins require a comment explaining why
+     layout structure cannot express the result. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* ---- Shape ----
+     Four radii cover a whole product. Resist adding a fifth. */
+  --radius-small: 8px;
+  --radius-control: 14px;
+  --radius-card: 18px;
+  --radius-pill: 999px;
+
+  /* Horizontal inset every screen shares. */
+  --screen-inset: 24px;
+}
+
+/* ---- Type roles ----
+   A role owns family, weight, size, line height, tracking, and default color
+   TOGETHER. Screens apply the class and may override alignment, wrapping, or
+   an explicitly semantic color — never a role's metrics. Sizes are production
+   points at the 390×844 baseline: mockup px = production pt, 1:1.
+
+   Do not rely on browser-default h1–h6 / strong / button typography; assign
+   the intended role explicitly. Italics are not a hierarchy tool. */
+
+.t-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: 34px;
+  line-height: 40px;
+  letter-spacing: -0.3px;
+  color: var(--ink-900);
+}
+.t-title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: 28px;
+  line-height: 34px;
+  letter-spacing: -0.2px;
+  color: var(--ink-900);
+}
+.t-heading {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  color: var(--ink-900);
+}
+.t-subheading {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  font-size: 17px;
+  line-height: 23px;
+  color: var(--ink-900);
+}
+.t-body-lg {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--ink-900);
+}
+.t-body {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--ink-900);
+}
+.t-callout {
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--ink-600);
+}
+.t-caption {
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+  color: var(--ink-600);
+}
+.t-link {
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--accent-interactive);
+}
+.t-on-accent {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--btn-label);
+}
+
+/* ---- Dark palette ----
+   Scoped to screens, not to the page: the gallery canvas is the workbench
+   and stays light, so annotations remain readable while screens go dark.
+   `.theme-dark` on <body> flips every screen (the toolbar toggle does this);
+   `.screen.night` forces one screen dark in both themes — useful for
+   mocking night-time flows next to their daytime siblings.
+
+   Dark is a re-resolution of roles, not an inversion of hexes: surfaces
+   rise slightly instead of going pure black, ink warms instead of going
+   pure white, and the accent hexes swap interactive/decorative roles. */
+.theme-dark .screen,
+.screen.night {
+  --canvas: #17181c;
+  --card: #22242b;
+  --functional: #1d1f24;
+  --selected: #2d3039;
+  --accent-tint: #262a3d;
+
+  --ink-900: #ecedef;
+  --ink-600: #b6b8bf;
+  --ink-400: #8a8d97;
+
+  --accent-interactive: #97a2f0;
+  --accent-decorative: #4653c8;
+
+  --danger: #d3766b;
+
+  --border-subtle: #2e3037;
+  --border-control: #454854;
+
+  --btn-fill: #ecedef;
+  --btn-label: #17181c;
+}

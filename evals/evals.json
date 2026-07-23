@@ -1,0 +1,23 @@
+{
+  "skill_name": "mobile-mockups-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building a small recipe-box app for home cooks (working name 'Ladle'). Before I write any code I want to see how it could look — can you design the main screens? Something warm and unfussy, phone app, light and dark mode. I want: home with saved recipes, a recipe detail, and what a brand-new user sees.",
+      "expected_output": "A mockup directory scaffolded from the skill assets with a customized design-system.css (warm palette, both themes), a filled DESIGN-SYSTEM.md contract, and an index.html whose sections cover home, detail, and first-run empty state with real copy, column labels, and rationale notes. Contrast pairs updated; foundations render green.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We have a mockup directory at design/mockup built with the mobile-mockups-skill method (design-system.css, DESIGN-SYSTEM.md, index.html). Add a settings flow: notifications preferences, account, and a delete-account confirmation. Match the existing system exactly.",
+      "expected_output": "A new flow page (copied from flow.html, foundations: false) or new section using ONLY existing design-system values and .t-* roles — no new hexes or font sizes. Delete-account screen shows a danger treatment consistent with the contract; states beyond the happy path included; existing files not normalized or restyled.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Our mockup's design system feels too corporate — client says it should feel 'like a cozy bookshop'. Can you rework the look without redoing every screen?",
+      "expected_output": "Changes concentrated in design-system.css role values (warmer surfaces, softer ink, serif display family, larger radii) plus DESIGN-SYSTEM.md updated to match; screens untouched or minimally touched. Contrast audit re-checked after the change; before/after foundations screenshots offered.",
+      "files": []
+    }
+  ]
+}
