@@ -57,7 +57,6 @@ installing.
 ## See it in action
 
 Live examples, straight from this repo:
-<!-- TODO: enable GitHub Pages (Settings → Pages → Deploy from a branch → main, root) -->
 
 - **[Starter canvas](https://euzharkov.github.io/mobile-mockups-skill/assets/)**
   — what the skill scaffolds into your repo: a foundations page (palette,
