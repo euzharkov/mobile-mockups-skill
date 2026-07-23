@@ -10,8 +10,7 @@ screens you review as screenshots in a real browser — real copy, light and
 dark themes, and a live accessibility audit included.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/euzharkov/blog/main/mobile-mockups-skill-examples/ios-calendar/ios-calendar-mockup-demo.gif" alt="Animated tour of the iOS Calendar fidelity study" width="49%" />
-  <img src="https://raw.githubusercontent.com/euzharkov/blog/main/mobile-mockups-skill-examples/gmail/gmail-mockup-demo.gif" alt="Animated tour of the Gmail fidelity study" width="49%" />
+  <img src="social-card.jpg" alt="Design mobile apps in plain HTML — phone-frame calendar mockups at three zoom levels" width="100%" />
 </p>
 
 Extracted from a real production workflow, where an entire mobile app was
@@ -55,6 +54,11 @@ installing.
 </details>
 
 ## See it in action
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/euzharkov/blog/main/mobile-mockups-skill-examples/ios-calendar/ios-calendar-mockup-demo.gif" alt="Animated tour of the iOS Calendar fidelity study" width="49%" />
+  <img src="https://raw.githubusercontent.com/euzharkov/blog/main/mobile-mockups-skill-examples/gmail/gmail-mockup-demo.gif" alt="Animated tour of the Gmail fidelity study" width="49%" />
+</p>
 
 Live examples, straight from this repo:
 
