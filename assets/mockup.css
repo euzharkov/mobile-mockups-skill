@@ -176,6 +176,14 @@ a {
      position scrolls the inline padding away. */
   scroll-padding-inline: calc(var(--canvas-pad) + 4px);
 }
+/* Center the phones when they fit the window; auto margins collapse to zero
+   once the rail overflows, so scrolling still starts at the first column. */
+.rail > .col:first-child {
+  margin-inline-start: auto;
+}
+.rail > .col:last-child {
+  margin-inline-end: auto;
+}
 .rail::-webkit-scrollbar {
   height: 10px;
 }
