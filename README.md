@@ -1,4 +1,4 @@
-# Mobile Mockups
+# Mobile Mockups Skill
 
 **Design your mobile app in plain HTML instead of Figma — an
 [Agent Skill](https://agentskills.io) for Claude Code, Codex, Cursor,
