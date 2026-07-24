@@ -34,6 +34,19 @@ The skill triggers on its own, interviews you about your product, and builds
 from there.
 
 <details>
+<summary><strong>Claude Code plugin marketplace</strong></summary>
+
+This repo is also a Claude Code plugin marketplace. Inside Claude Code:
+
+```
+/plugin marketplace add euzharkov/mobile-mockups-skill
+```
+
+then install the `mobile-mockups` plugin from the `/plugin` menu.
+
+</details>
+
+<details>
 <summary><strong>Manual install</strong></summary>
 
 The skill is this repository. Clone or download it, then copy the folder

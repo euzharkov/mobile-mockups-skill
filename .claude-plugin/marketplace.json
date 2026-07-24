@@ -1,0 +1,19 @@
+{
+  "name": "mobile-mockups",
+  "owner": {
+    "name": "Eugene Zharkov"
+  },
+  "metadata": {
+    "description": "Design mobile app UI in plain HTML instead of Figma — an ongoing design workflow: build a per-project design system, then create, extend, restyle, and iterate on phone-frame mockup screens with live WCAG contrast auditing.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "mobile-mockups",
+      "description": "Continuous mobile UI design in plain HTML: create a per-project design system (semantic CSS custom properties, type roles, WCAG contrast audit), compose phone-frame mockup screens, then keep working — add screens, update flows, restyle, screenshot, critique, and iterate directly in the browser.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./"]
+    }
+  ]
+}
