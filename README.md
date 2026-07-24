@@ -14,8 +14,10 @@ dark themes, and a live accessibility audit included.
 </p>
 
 Extracted from a real production workflow, where an entire mobile app was
-designed this way before a line of it was implemented. The full story is in
-the article. <!-- TODO: link the article when published -->
+designed this way before a line of it was implemented. The full story — why
+HTML beats Figma when your designer is an agent, and how the method evolved —
+is in the article:
+**[I Built a Mobile App Mockup Skill](https://open.substack.com/pub/euzharkov/p/i-built-a-mobile-app-mockup-skill)**.
 
 ## Quick start
 
